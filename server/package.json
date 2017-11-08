@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "achim-salt": "^1.0.0",
+    "axios": "^0.16.2",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.5",
+    "jsonwebtoken": "^8.0.1",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.13",
+    "morgan": "^1.9.0",
+    "oauth": "^0.9.15"
+  }
+}
