@@ -13,7 +13,7 @@ function allProduct(req,res){
 
 function addProduct(req,res){
   product.create({
-    id: req.body.id,
+    // id: req.body.id,
     name: req.body.name,
     img: req.body.img,
     price: req.body.price,

@@ -1,16 +1,27 @@
+import axios from 'axios'
+import { Redirect } from 'react-router'
+
+const http = axios.create({
+    baseURL:`http://localhost:3000/`
+})
+
 export const getAllItem = () => {
-    return {
-        type: 'GET_ALLITEM'
+    // return (dispatch, getState) =>{
+    return (dispatch) => {
+        http.get('/')
+        .then( result =>{
+            dispatch({
+                type: 'GET_ALLITEM',
+                payload: result.data
+            })
+        })
     }
 }
 
-// export const setSelectedHero = (activeHero) => {
 export const setSelectedItem = (item) => {
     return {
-        // type: 'SET_ACTIVE_HERO',
         type: 'SET_ITEM',
         payload: {
-            // hero: activeHero
             itemCurrent: item
         }
     }
@@ -51,8 +62,38 @@ export const setTotalPrice = (params) => {
     }
 }
 
-// export const destroyActiveHero = {
 export const destroyItem = {
-    // type: 'DESTROY_ACTIVE_HERO'
     type: 'DESTROY_ITEM'
+}
+
+export const login = (params) => {
+    return (dispatch) => {
+        http.post('customer/login',{
+            username: params.username,
+            password: params.password
+        })
+        .then( result =>{ 
+            if (result.data.err) {
+                alert (result.data.err.msg)
+            } else {
+                localStorage.setItem('token', result.data.token)
+                // alert(JSON.stringify(result))
+                dispatch(verify(result.data.token))
+            }
+        })
+    }
+}
+
+export const verify = (token) => {
+    return (dispatch) => {
+        http.post('customer/verify',{
+            token:token
+        })
+        .then( result => {
+            dispatch({
+                type: 'VERIFY_USER',
+                payload: result
+            })
+        })
+    }
 }

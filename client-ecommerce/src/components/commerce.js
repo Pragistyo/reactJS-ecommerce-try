@@ -8,7 +8,8 @@ import { changeLoginRegis } from '../actions/compoActions'
 import {
     BrowserRouter as Router,
     Route,
-    Link
+    Link,
+    withRouter
 } from 'react-router-dom'
 
 class Commerce extends Component{
@@ -21,6 +22,7 @@ class Commerce extends Component{
             <main className="mdl-layout__content">
                 <div className="page-content">
                     <h3 className="" align="center">{this.props.title}</h3>
+                    <h3 className="" align="center">{this.props.userData.username}</h3>
                     <hr />
                     <div className="mdl-grid">
                         <Checkout myProp={[this.props.totalPrice, this.props.cart]}></Checkout>
@@ -33,11 +35,11 @@ class Commerce extends Component{
                                     })}
                                 />
                                 <Route
-                                    path="/login"
+                                    exact path="/login"
                                     render={props => <Login myProp={this.setFormLoginRegis.bind(this)} />}
                                 />
                                 <Route
-                                    path="/register"
+                                    exact path="/register"
                                     render={props => <Register myProp={this.setFormLoginRegis.bind(this)} />}
                                 />
                             </div>
@@ -49,8 +51,6 @@ class Commerce extends Component{
         )
     }
     
-    // receiveDataCart = { this.receiveData.bind(this) }
-
     setFormLoginRegis(val) {
         this.props.changeLoginRegis(val)
     }
@@ -69,7 +69,8 @@ const mapStateToProps = (state) => {
         totalPrice: state.lapak.totalPrice,
         cart: state.lapak.cart,
         allItem: state.lapak.allItem,
-        title: state.lapak.title
+        title: state.lapak.title,
+        userData: state.login.userData
     }
 }
 
@@ -78,4 +79,4 @@ var ConnectedComponent = connect(
 )(Commerce)
 
 
-export default ConnectedComponent
+export default withRouter(ConnectedComponent)

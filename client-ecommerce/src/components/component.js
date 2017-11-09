@@ -68,7 +68,7 @@ class Compo extends Component {
         if (produkidx === -1) {
             product.quantity += 1
             this.props.addCartFront(product)
-            Compo.calculatePrice.call(this) // pake async await di methode ini
+            // Compo.calculatePrice.call(this) // pake async await di methode ini
         } else {
             const cartFront = [...this.props.cartFront]
             cartFront[produkidx].quantity = product.quantity + 1

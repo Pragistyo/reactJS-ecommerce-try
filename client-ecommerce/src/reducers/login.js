@@ -1,7 +1,7 @@
 const initState = {
     userData: {
         userId: null,
-        username: null
+        username: 'test username'
     },
     loginStatus: {
         status : false,
@@ -10,12 +10,15 @@ const initState = {
 }
 
 function loginReducer(state = initState, action) { // payload
-    if (action.type === 'GET_USER_DATA') {
+    // alert(JSON.stringify(action))
+    if (action.type === 'VERIFY_USER') {
+        alert(JSON.stringify(action.payload.data.username))
         return  {
             ...state,
             userData: {
                 ...state.userData,
-                userId: action._id
+                userId: action.payload.data.id,
+                username: action.payload.data.username
             }
         }
     } else {
