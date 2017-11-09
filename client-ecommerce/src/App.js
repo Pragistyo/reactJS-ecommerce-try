@@ -14,20 +14,14 @@ import {
 } from 'react-router-dom'
 import { 
   getAllItem, 
-  changeLoginRegis
+  changeLoginRegis,
+  verify
  } from './actions/compoActions'
 
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-        products: [],
-        cart: [],
-        cartFront: [],
-        history: [],
-        totalPrice: 0
-    }
   }
 
   render() {
@@ -38,34 +32,6 @@ class App extends Component {
           <Navbar></Navbar>
           <Drawer></Drawer>
           <Commerce></Commerce>
-          {/* <main className="mdl-layout__content">
-            <div className="page-content">
-              <h3 className="" align="center">{this.props.title}</h3>
-              <hr />                
-                <div className="mdl-grid">
-                  <Checkout myProp={[this.state.totalPrice,this.state.cart]}></Checkout>
-                  <div className="mdl-cell--9-col">
-                    <div className="mdl-grid">
-                      <Route 
-                      exact path="/"
-                      render={props => this.props.allItem.map(item=>{
-                        return <Compo key={item._id} nama={item} receiveDataCart={this.receiveData.bind(this)}/>
-                      })}
-                      />
-                      <Route
-                        path="/login"
-                        render={props => <Login myProp={this.setFormLoginRegis.bind(this)} />}
-                      />
-                      <Route
-                        path="/register"
-                        render={props => <Register myProp={this.setFormLoginRegis.bind(this)} />}
-                      />
-                    </div>
-                  </div>
-                  <br/>
-                </div>
-            </div>
-          </main> */}
         </div>
       </Router>
     );
@@ -73,6 +39,9 @@ class App extends Component {
 
   componentWillMount() {
     this.props.getAllItem()
+    if (localStorage.token) {
+      this.props.verify(localStorage.token)
+    }
   }
 
   ComponentDidMount() {
@@ -201,7 +170,8 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllItem: () => dispatch(getAllItem()),
-    changeLoginRegis: (params) => dispatch(changeLoginRegis(params))
+    changeLoginRegis: (params) => dispatch(changeLoginRegis(params)),
+    verify: (params) => dispatch(verify(params))
   }
 }
 

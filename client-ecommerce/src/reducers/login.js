@@ -12,13 +12,32 @@ const initState = {
 function loginReducer(state = initState, action) { // payload
     // alert(JSON.stringify(action))
     if (action.type === 'VERIFY_USER') {
-        alert(JSON.stringify(action.payload.data.username))
+        // alert(JSON.stringify(action.payload.token))
         return  {
             ...state,
             userData: {
                 ...state.userData,
-                userId: action.payload.data.id,
-                username: action.payload.data.username
+                userId: action.payload.result.data.id,
+                username: `Welcome ${action.payload.result.data.username} !`
+            },
+            loginStatus: {
+                ...state.loginStatus,
+                status: true,
+                token: action.payload.token
+            }
+        }
+    } else if (action.type === 'LOGOUT'){
+        return {
+            ...state,
+            userData: {
+                ...state.userData,
+                userId: null,
+                username: null
+            },
+            loginStatus: {
+                ...state.loginStatus,
+                status: false,
+                token: null
             }
         }
     } else {

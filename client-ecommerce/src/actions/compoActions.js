@@ -2,8 +2,8 @@ import axios from 'axios'
 import { Redirect } from 'react-router'
 
 const http = axios.create({
-    baseURL:`http://localhost:3030/`
-    // baseURL: `http://35.197.157.222:3030`
+    // baseURL:`http://localhost:3030/`
+    baseURL: `http://35.197.157.222:3030`
 })
 
 export const getAllItem = () => {
@@ -79,7 +79,6 @@ export const login = (params) => {
                 alert (result.data.err.msg)
             } else {
                 localStorage.setItem('token', result.data.token)
-                // alert(JSON.stringify(result))
                 dispatch(verify(result.data.token))
             }
         })
@@ -94,8 +93,14 @@ export const verify = (token) => {
         .then( result => {
             dispatch({
                 type: 'VERIFY_USER',
-                payload: result
+                payload: {result:result, token:token}
             })
         })
+    }
+}
+
+export const doLogout = (params) => {
+    return {
+        type: 'LOGOUT'
     }
 }

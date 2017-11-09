@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { changeLoginRegis, setTitle } from '../actions/compoActions'
+import { changeLoginRegis, setTitle, doLogout } from '../actions/compoActions'
 import logo from '../logo.svg'
 import {
     BrowserRouter as Router,
     Route,
-    Link
+    Link,
+    Redirect
 } from 'react-router-dom'
 
 
@@ -39,23 +40,41 @@ class Navbar extends Component {
                     <span className="mdl-layout-title logo">Ecommerce</span>
                 </div>
                 <div className="mdl-layout-spacer"></div>
-                <nav className="mdl-navigation">
-                    <Link
-                        className="mdl-navigation__link"
-                        to="/login"
-                        onClick={this.changeTitle.bind(this, 'Login')}
-                    >Login
-                </Link>
-                    <Link
-                        className="mdl-navigation__link"
-                        onClick={this.changeTitle.bind(this, 'Register')}
-                        to="/register"
-                    >Register
-                </Link>
-                </nav>
+                {this.buttonLog.call(this)}
             </div>
         </header>
         )
+    }
+
+    ComponentWillMount () {
+    }
+
+    buttonLog () {
+        if (!this.props.loginStatus.status) {
+            return <nav className="mdl-navigation">
+                <Link
+                    className="mdl-navigation__link"
+                    to="/login"
+                    onClick={this.changeTitle.bind(this, 'Login')}
+                >Login
+                </Link>
+                <Link
+                    className="mdl-navigation__link"
+                    onClick={this.changeTitle.bind(this, 'Register')}
+                    to="/register"
+                >Register
+                </Link>
+            </nav>
+        } else {
+            return <button onClick={this.logoutMethod.bind(this)}>LOGOUT</button>
+        }
+    }
+
+    logoutMethod () {
+        alert('localstorage clear')
+        localStorage.clear()
+        this.props.doLogout()
+        return <Redirect to="/" />
     }
 
     changeTitle(val) {
@@ -71,7 +90,8 @@ class Navbar extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         changeLoginRegis: (params) => dispatch(changeLoginRegis(params)),
-        setTitle: (params) => dispatch(setTitle(params))
+        setTitle: (params) => dispatch(setTitle(params)),
+        doLogout: (params) => dispatch(doLogout(params))
     }
 }
 
@@ -79,7 +99,8 @@ const mapStateToProps = (state) => {
     // alert(JSON.stringify(state.compoReducer))
     return {
         formLoginRegis: state.lapak.formLoginRegis,
-        title: state.lapak.title
+        title: state.lapak.title,
+        loginStatus: state.login.loginStatus
     }
 }
 
