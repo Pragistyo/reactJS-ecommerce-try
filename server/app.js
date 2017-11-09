@@ -17,13 +17,13 @@ app.use(morgan('dev'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))
 
-const index = require('./routes/index');
-const customer  = require('./routes/customer');
-const transaction = require('./routes/transaction');
+const index = require('./routes/index')
+const customer  = require('./routes/customer')
+const transaction = require('./routes/transaction')
 
-app.use('/transaction',transaction);
-app.use('/customer',customer);
-app.use('/',index);
+app.use('/transaction',transaction)
+app.use('/customer',customer)
+app.use('/',index)
 
 
 
