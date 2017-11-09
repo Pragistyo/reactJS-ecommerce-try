@@ -2,8 +2,8 @@ import axios from 'axios'
 import { Redirect } from 'react-router'
 
 const http = axios.create({
-    // baseURL:`http://localhost:3030/`
-    baseURL: `http://35.197.157.222:3030`
+    baseURL:`http://localhost:3030/`
+    // baseURL: `http://35.197.157.222:3030`
 })
 
 export const getAllItem = () => {
