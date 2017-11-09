@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom'
 // import axios from 'axios'
 // import swal from 'sweetalert'
 import '../App.css';
@@ -9,7 +10,7 @@ import '../App.css';
 // } from 'react-router-dom'
 
 
-class Compo extends Component {
+class Register extends Component {
     constructor(props) {
         super(props)
     }
@@ -18,7 +19,7 @@ class Compo extends Component {
         return (
             <div className="mdl-cell" align="center">
                 <div className="mdl-cell mdl-cell--12-col mdl-cell--8-offset">
-                    <form onSubmit={this.registerSubmit}>
+                    <form onSubmit={this.registerSubmit.bind(this)}>
                         <div className="mdl-textfield mdl-js-textfield">
                             <label className="mdl-textfield__label" htmlFor="inputText">Username...</label>
                             <input className="mdl-textfield__input" type="text" id="inputUsername" />
@@ -49,8 +50,10 @@ class Compo extends Component {
         e.preventDefault()
         console.log(e)
         alert(e)
+        this.props.history.push('/')
+        this.props.myProp(false)
     }
 
 }
 
-export default Compo;
+export default withRouter(Register)

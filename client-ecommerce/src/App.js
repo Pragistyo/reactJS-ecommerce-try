@@ -71,8 +71,13 @@ class App extends Component {
     );
   }
 
+  componentWillMount() {
+    this.props.getAllItem()
+  }
+
   ComponentDidMount() {
-    this.allProducts.call(this)
+    this.props.getAllItem()
+    // this.allProducts.call(this)
   }
 
   allProducts () {

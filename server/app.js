@@ -5,8 +5,8 @@ const morgan      = require('morgan');
 const cors        = require('cors');
 const app         = express()
 
-
-mongoose.connect('mongodb://localhost/belanjaan',(err)=>{
+// mongoose.connect('mongodb://localhost/belanjaan',(err)=>{
+mongoose.connect('mongodb://ecommerce-react-redux-ogi:ogitampan@cluster0-shard-00-00-boark.mongodb.net:27017,cluster0-shard-00-01-boark.mongodb.net:27017,cluster0-shard-00-02-boark.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin', (err) => {
   if(!err) {console.log('mongoose connected');}
   else {console.log('ERROR, NOT CONNECTED');}
 })
@@ -33,7 +33,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT || 3030,()=>{
   console.log('Port 3000, Ready !');
 })
 

@@ -22,7 +22,7 @@ function addCustomer(req,res){
     username:req.body.username,
     password:hash,
     email:req.body.email,
-    role:req.body.role
+    role: 'customer'
   }).then(data=>{
     res.send(data)
   })
@@ -71,7 +71,7 @@ function updateCustomer(req,res){
 }
 
 function login(req,res){
-  console.log('================='+req.body.role+'blabla'+req.body.username)
+  console.log('================= blabla '+req.body.username)
   customer.findOne({username:req.body.username})
   .then(data=>{
     if (bcrypt.compareSync(req.body.password, data.password)) {
@@ -83,8 +83,8 @@ function login(req,res){
         role     : data.role
       }, process.env.SECRET_KEY)
       res.send({token:token,msg:'berhasil'})
-    }else{
-      res.status(401).send({
+    } else {
+      res.send({
         status:401,
         err:{
           msg:'Password Salah'
@@ -93,7 +93,10 @@ function login(req,res){
     }
   })
   .catch(err=>{
-    res.status(404).send({status:401,err:{msg:'username does not exist'}})
+    res.send({
+      err: {msg: 'Username Does Not Exist'}
+    })
+      // res.status(404).send({status:401,err:{msg:'username does not exist'}})
   })
 }
 
