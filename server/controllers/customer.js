@@ -73,7 +73,7 @@ function updateCustomer(req,res){
 function login(req,res){
   console.log('================= blabla '+req.body.username)
   customer.findOne({username:req.body.username})
-  .then(data=>{
+  .then(data =>{
     if (bcrypt.compareSync(req.body.password, data.password)) {
       console.log(data);
       var token = jwt.sign({

@@ -77,7 +77,7 @@ class Compo extends Component {
     }
 
     static calculatePrice() {
-        alert('halo')
+        // alert('halo')
         let total = 0;
         if (this.props.cartFront.length > 0) {
             this.props.cartFront.forEach(item => {
@@ -88,7 +88,7 @@ class Compo extends Component {
             total = 0
         }
         this.props.setTotalPrice(total)
-        alert('ini price: ' + this.props.totalPrice)
+        // alert('ini price: ' + this.props.totalPrice)
     }
 
 }

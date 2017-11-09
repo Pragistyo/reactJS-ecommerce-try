@@ -1,7 +1,7 @@
 const initState = {
     userData: {
         userId: null,
-        username: 'test username'
+        username: null
     },
     loginStatus: {
         status : false,

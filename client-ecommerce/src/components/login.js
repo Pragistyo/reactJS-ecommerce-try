@@ -69,7 +69,7 @@ class Login extends Component {
         // alert(JSON.stringify(this.state.username))
         this.props.login(this.state)
         // this.context.history.push('/'); 
-        // this.props.history.push('/')
+        this.props.history.push('/')
         this.props.myProp(false)
         // window.location.href='/'
         // this.context.router.transitionTo('/');
