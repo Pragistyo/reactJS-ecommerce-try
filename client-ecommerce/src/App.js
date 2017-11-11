@@ -5,7 +5,6 @@ import './App.css'
 import Commerce from './components/commerce.js'
 import Drawer from './components/drawer.js'
 import Navbar from './components/navbar.js'
-import Checkout from './components/checkout.js'
 import { connect } from 'react-redux'
 import {
   BrowserRouter as Router,
@@ -26,7 +25,6 @@ class App extends Component {
 
   render() {
     return (
-      
       <Router>
         <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
           <Navbar></Navbar>
@@ -44,22 +42,9 @@ class App extends Component {
     }
   }
 
-  ComponentDidMount() {
-    this.props.getAllItem()
-    // this.allProducts.call(this)
-  }
-
-  allProducts () {
-    axios.get(`http://localhost:3000/`) //Link nya si mongo
-    .then( result => {  //result array of object
-      this.setState({
-        products: result
-      })
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
+  // ComponentDidMount() {
+  //   this.props.getAllItem()
+  // }
 
   itemCategory (key) {
     axios.get(`http://localhost:3000/category/${key}`) //link mongo
@@ -122,49 +107,6 @@ class App extends Component {
     })
   }
 
-  sidebarView () {
-    if (!this.props.formLoginRegis) {
-      return <div className="mdl-cell--3-col">
-        <h3>Your Shopping Cart:</h3><hr />
-        <p>Total Price: Rp. {this.state.totalPrice},-</p>
-        <p>Total Item: {this.state.cart.length}</p>
-        <p>Item Cart: </p>
-        {this.itemChosen.call(this)}
-        <button
-          className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-          onClick={this.activateLasers.bind(this)}>
-          CHECKOUT
-        </button>
-      </div>
-    } else {
-      return <div className="mdl-cell--2-col"></div>
-    }
-  }
-
-  itemChosen () {
-    if (this.state.cart.length !== 0) {
-      return <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-        {this.state.cartFront.map(item => {
-          return <tbody>
-              <tr>
-                <td>{item.name}</td>
-                <td>{item.quantity} pc(s)</td>
-                <td>Rp. {item.price},-</td>
-              </tr>
-          </tbody>
-        })}
-        </table>
-      </div>
-    }
-  }
 }
 
 const mapDispatchToProps = (dispatch) => {

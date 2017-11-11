@@ -4,7 +4,7 @@ import Login from './login.js'
 import Register from './register.js'
 import Checkout from './checkout.js'
 import { connect } from 'react-redux'
-import { changeLoginRegis } from '../actions/compoActions'
+import { changeLoginRegis, setTitle } from '../actions/compoActions'
 import {
     BrowserRouter as Router,
     Route,
@@ -51,6 +51,11 @@ class Commerce extends Component{
         )
     }
     
+    ComponentWillMount () {
+        this.props.title
+        this.props.setTitle('All Item')
+    }
+    
     setFormLoginRegis(val) {
         this.props.changeLoginRegis(val)
     }
@@ -58,7 +63,8 @@ class Commerce extends Component{
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeLoginRegis: (params) => dispatch(changeLoginRegis(params))
+        changeLoginRegis: (params) => dispatch(changeLoginRegis(params)),
+        setTitle: (params) => dispatch(setTitle(params))
     }
 }
 

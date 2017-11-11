@@ -62,8 +62,8 @@ class Checkout extends Component{
     }
     
     activateLasers(bla) {
-        // alert()
-        swal(JSON.stringify(this.props.cart), 'yuhuuu', 'success')
+        alert('not yet finished')
+        // swal(JSON.stringify(this.props.cart), 'yuhuuu', 'success')
     }
 }
 

@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { Redirect } from 'react-router'
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 
 const http = axios.create({
     // baseURL:`http://localhost:3030/`
@@ -102,5 +103,24 @@ export const verify = (token) => {
 export const doLogout = (params) => {
     return {
         type: 'LOGOUT'
+    }
+}
+
+export const register = (params) => {
+    alert(JSON.stringify(params))
+    return (dispatch) => {
+        http.post('customer',{
+            username: params.username,
+            password: params.password,
+            email: params.email
+        })
+        .then(result=>{
+            console.log(result)
+            return <Redirect to="/login"/>
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+        // type: 'REGISTER'
     }
 }

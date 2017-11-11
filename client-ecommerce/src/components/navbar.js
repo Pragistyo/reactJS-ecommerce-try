@@ -71,10 +71,10 @@ class Navbar extends Component {
     }
 
     logoutMethod () {
-        alert('localstorage clear')
+        // alert('localstorage clear')
         localStorage.clear()
         this.props.doLogout()
-        return <Redirect to="/" />
+        return <Redirect push to="/login" />
     }
 
     changeTitle(val) {
@@ -109,7 +109,6 @@ var ConnectedComponent = connect(
 )(Navbar)
 
 export default ConnectedComponent
-
 
 // export default Navbar
 

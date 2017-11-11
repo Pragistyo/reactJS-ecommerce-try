@@ -14,4 +14,4 @@ router.post('/verify',customer.verify);
 
 console.log("wahahaha router customer");
 
-module.exports =router
+module.exports = router

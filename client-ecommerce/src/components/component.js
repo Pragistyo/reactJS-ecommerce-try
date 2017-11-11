@@ -47,6 +47,11 @@ class Compo extends Component {
         );
     }
 
+    ComponentWillMount() {
+        this.props.title
+        this.props.setTitle('All Item')
+    }
+
     addToCart (value) {
         this.alertCartFront.call(this, value.objItem)
         this.props.addCart(value.objItem._id)
@@ -97,9 +102,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changeLoginRegis: (params) => dispatch(changeLoginRegis(params)),
         addCart: (params) => dispatch(addCart(params)),
-        addCartFront: (params) => dispatch(addCartFront(params), ()=>{
-            Compo.calculatePrice.call(Compo)
-        }),
+        addCartFront: (params) => dispatch(addCartFront(params)),
         setTotalPrice: (params) => dispatch(setTotalPrice(params))
     }
 }

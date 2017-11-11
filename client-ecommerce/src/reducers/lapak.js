@@ -11,7 +11,7 @@ const initState = {
     //         { _id: '008', name: 'I Watch Series 2', price: 8000000, img: 'https://cdn2.gsmarena.com/vv/bigpic/apple-watch2-edition-42mm.jpg', category: 'Watch' }
     //     ],
     formLoginRegis: false,
-    title: 'All Item',
+    title: null,
     totalPrice: 0,
     cart: [],
     cartFront: []

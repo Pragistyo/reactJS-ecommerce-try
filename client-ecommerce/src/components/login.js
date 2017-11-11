@@ -8,7 +8,7 @@ import '../App.css';
 //     Link
 // } from 'react-router-dom'
 import { connect }from 'react-redux'
-import { changeLoginRegis, login } from '../actions/compoActions'
+import { changeLoginRegis, login, setTitle } from '../actions/compoActions'
 
 
 class Login extends Component {
@@ -28,7 +28,7 @@ class Login extends Component {
                         <div className="mdl-textfield mdl-js-textfield">
                             <label className="mdl-textfield__label" htmlFor="inputText">Username...</label>
                             <input
-                                onChange={this.onChange.bind(this)} 
+                            onChange={this.onChange.bind(this)} 
                             name="username" 
                             className="mdl-textfield__input" 
                             type="text" 
@@ -51,9 +51,10 @@ class Login extends Component {
             </div>
         );
     }
-
+    
     componentDidMount () {
-        this.props.myProp(true)        
+        this.props.myProp(true)
+        this.props.setTitle('Login')
     }
 
     onChange (e) {
@@ -79,15 +80,16 @@ class Login extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         changeLoginRegis: (params) => dispatch(changeLoginRegis(params)),
-        login: (params) => dispatch(login(params))
+        login: (params) => dispatch(login(params)),
+        setTitle: (params) => dispatch(setTitle(params))
     }
 }
 
 const mapStateToProps = (state) => {
     // alert(JSON.stringify(state.lapak))
     return {
-        formLoginRegis: state.lapak.formLoginRegis,
-        title: state.lapak.title,
+        formLoginRegis: state.lapak.formLoginRegis
+        // title: state.lapak.title,
     }
 }
 
