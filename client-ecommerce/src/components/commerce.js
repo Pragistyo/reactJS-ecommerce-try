@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Compo from './component.js'
+import Categ from './category.js'
 import Login from './login.js'
 import Register from './register.js'
 import Checkout from './checkout.js'
@@ -21,8 +22,8 @@ class Commerce extends Component{
         return (
             <main className="mdl-layout__content">
                 <div className="page-content">
-                    <h3 className="" align="center">{this.props.title}</h3>
                     <h3 className="" align="center">{this.props.userData.username}</h3>
+                    <h3 className="" align="center">{this.props.title}</h3>
                     <hr />
                     <div className="mdl-grid">
                         <Checkout myProp={[this.props.totalPrice, this.props.cart]}></Checkout>
@@ -32,6 +33,12 @@ class Commerce extends Component{
                                     exact path="/"
                                     render={props => this.props.allItem.map(item => {
                                         return <Compo key={item._id} nama={item} receiveDataCart={this.receiveData}/>
+                                    })}
+                                />
+                                <Route
+                                    exact path="/category/:category"
+                                    render={props => this.props.allItem.map(item => {
+                                        return <Categ {...props} key={item._id} nama={item} />
                                     })}
                                 />
                                 <Route
@@ -52,7 +59,11 @@ class Commerce extends Component{
     }
     
     ComponentWillMount () {
+        this.props.setTitle('All Item')
         this.props.title
+    }
+
+    ComponentDidMount () {
         this.props.setTitle('All Item')
     }
     

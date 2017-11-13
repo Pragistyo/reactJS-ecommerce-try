@@ -24,7 +24,8 @@ class Login extends Component {
         return (
             <div className="mdl-cell" align="center">
                 <div className="mdl-cell mdl-cell--12-col mdl-cell--8-offset">
-                    <form onSubmit={this.loginSubmit.bind(this)}>
+                    {/* <form onSubmit={this.loginSubmit.bind(this)}> */}
+                    <form onSubmit={(e) => this.loginSubmit(e, this.props.history.push('/'))}>
                         <div className="mdl-textfield mdl-js-textfield">
                             <label className="mdl-textfield__label" htmlFor="inputText">Username...</label>
                             <input
@@ -67,11 +68,11 @@ class Login extends Component {
     loginSubmit (e) {
         e.preventDefault()
         console.log(e)
-        // alert(JSON.stringify(this.state.username))
         this.props.login(this.state)
         // this.context.history.push('/'); 
-        this.props.history.push('/')
+        // this.props.history.push('/')
         this.props.myProp(false)
+        this.props.setTitle('All Item')
         // window.location.href='/'
         // this.context.router.transitionTo('/');
     }

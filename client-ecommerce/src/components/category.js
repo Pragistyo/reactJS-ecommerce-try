@@ -1,20 +1,24 @@
 import React, { Component } from 'react'
 import swal from 'sweetalert'
+import { withRouter } from 'react-router-dom';
 import '../App.css'
 import { connect } from 'react-redux'
-import { 
-    changeLoginRegis, 
-    addCart, 
+import {
+    changeLoginRegis,
+    addCart,
     addCartFront,
-    setTotalPrice
- } from '../actions/compoActions'
+    setTotalPrice,
+    getCategory
+} from '../actions/compoActions'
 
 
-class Compo extends Component {
+class Categ extends Component {
     constructor(props) {
         super(props)
+        let match = props.match
         this.state = {
-            count : 0
+            count: 0,
+            match: match.params.category
         }
     }
 
@@ -23,7 +27,7 @@ class Compo extends Component {
             <div className="mdl-cell--4-col">
                 <div className="demo-card-square mdl-card mdl-shadow--2dp">
                     <div className="" align="center">
-                        <img src={this.props.nama.img} alt="barang"/>
+                        <img src={this.props.nama.img} alt="barang" />
                     </div>
                     <div className="mdl-card__title mdl-card--expand">
                         <h2 className="mdl-card__title-text">{this.props.nama.name}</h2>
@@ -36,8 +40,8 @@ class Compo extends Component {
                         <p className="mdl-button mdl-button--colored mdl-js-button">
                             Price : Rp. {this.props.nama.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")},-
                         </p><br />
-                        <p className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
-                           onClick ={this.addToCart.bind(this,{objItem: this.props.nama,msg:'Item Added !'})}>
+                        <p className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                            onClick={this.addToCart.bind(this, { objItem: this.props.nama, msg: 'Item Added !' })}>
                             <i className="material-icons">shop</i>
                             Cart : {this.state.count}
                         </p>
@@ -51,19 +55,23 @@ class Compo extends Component {
         this.props.setTitle('All Item')
         this.props.title
     }
-
-    componentWillReceiveProps (nextProps) {
+    
+    componentDidMount() {
+        this.props.getCategory(this.state.match.toLowerCase())
+    }
+    
+    componentWillReceiveProps(nextProps) {
         // Load new data when the dataSource property changes.
         // if(nextProps.cart != this.props.cart) {
         if (nextProps.cart.length === 0) {
             // this.loadData(nextProps.dataSource);
             this.setState({
-                count:0
+                count: 0
             })
         }
     }
 
-    addToCart (value) {
+    addToCart(value) {
         this.alertCartFront.call(this, value.objItem)
         this.props.addCart(value.objItem._id)
         this.setState({
@@ -84,11 +92,11 @@ class Compo extends Component {
         if (produkidx === -1) {
             product.quantity += 1
             this.props.addCartFront(product)
-            // Compo.calculatePrice.call(this) // pake async await di methode ini
+            // Categ.calculatePrice.call(this) // pake async await di methode ini
         } else {
             const cartFront = [...this.props.cartFront]
             cartFront[produkidx].quantity = product.quantity + 1
-            Compo.calculatePrice.call(this)
+            Categ.calculatePrice.call(this)
         }
     }
 
@@ -112,7 +120,8 @@ const mapDispatchToProps = (dispatch) => {
         changeLoginRegis: (params) => dispatch(changeLoginRegis(params)),
         addCart: (params) => dispatch(addCart(params)),
         addCartFront: (params) => dispatch(addCartFront(params)),
-        setTotalPrice: (params) => dispatch(setTotalPrice(params))
+        setTotalPrice: (params) => dispatch(setTotalPrice(params)),
+        getCategory: (params) => dispatch(getCategory(params))
     }
 }
 
@@ -130,7 +139,7 @@ const mapStateToProps = (state) => {
 
 var ConnectedComponent = connect(
     mapStateToProps, mapDispatchToProps
-)(Compo)
+)(Categ)
 
 
 export default ConnectedComponent

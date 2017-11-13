@@ -15,3 +15,5 @@ router.post('/verify',customer.verify);
 console.log("wahahaha router customer");
 
 module.exports = router
+
+// 35.197.157.222

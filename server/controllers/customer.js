@@ -27,7 +27,7 @@ function addCustomer(req,res){
     res.send(data)
   })
   .catch(err=>{
-    res.send('ERROOOOORRR',err)
+    res.send(err)
   })
 }
 

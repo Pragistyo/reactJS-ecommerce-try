@@ -1,10 +1,11 @@
 import axios from 'axios'
+import swal from 'sweetalert'
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 
 const http = axios.create({
-    // baseURL:`http://localhost:3030/`
-    baseURL: `http://35.197.157.222:3030`
+    baseURL:`http://localhost:3030/`
+    // baseURL: `http://35.197.157.222:3030`
 })
 
 export const getAllItem = () => {
@@ -15,6 +16,18 @@ export const getAllItem = () => {
             dispatch({
                 type: 'GET_ALLITEM',
                 payload: result.data
+            })
+        })
+    }
+}
+
+export const getCategory = (params) => {
+    return (dispatch) => {
+        http.get(`category/${params}`)
+        .then(({data}) => {
+            dispatch({
+                type: 'GET_CATEGORY',
+                payload: data
             })
         })
     }
@@ -64,11 +77,48 @@ export const setTotalPrice = (params) => {
     }
 }
 
+export const clearCart = (params) => {
+    return (dispatch) => {
+        dispatch({
+                type: 'CLEAR_CART',
+                payload: params
+            }, swal('Your Cart cleared', '', 'success'))
+    }
+}
+
+export const checkoutAction = (params) => {
+    alert(JSON.stringify(params.cartFront))
+    if (params.totalPrice === 0 ) {
+        swal('Please buy something to checkout', '', 'warning')
+        return {
+            type: 'CHECKOUT_FAILED'
+        }
+    } else {
+        return (dispatch) => {
+            http.post('transaction',{
+                customerId: params.customerId,
+                cart: params.cartFront,
+                totalPrice: params.totalPrice
+            },{
+                headers: {
+                    token: localStorage.getItem('token')
+                }
+            })
+            .then( result => {
+                alert(JSON.stringify(result))
+                dispatch({
+                    type: 'CHECKOUT'
+                })
+            })
+        }
+    }
+}
+
 export const destroyItem = {
     type: 'DESTROY_ITEM'
 }
 
-export const login = (params) => {
+export const login = (params, history) => {
     return (dispatch) => {
         http.post('customer/login',{
             username: params.username,
@@ -76,15 +126,17 @@ export const login = (params) => {
         })
         .then( result =>{ 
             if (result.data.err) {
-                alert(JSON.stringify(result))
+                // alert(JSON.stringify(result))
                 alert (result.data.err.msg)
             } else {
+                alert('terdispatch')
                 localStorage.setItem('token', result.data.token)
                 dispatch(verify(result.data.token))
             }
         })
     }
 }
+
 
 export const verify = (token) => {
     return (dispatch) => {
@@ -95,7 +147,28 @@ export const verify = (token) => {
             dispatch({
                 type: 'VERIFY_USER',
                 payload: {result:result, token:token}
-            })
+            },historyTrans({customerId:result.data.id}))
+        })
+    }
+}
+
+export const historyTrans = (params) => {
+    // alert(JSON.stringify(params))
+    return (dispatch) => {
+        http.get(`transaction/${params.customerId}`, {
+            headers: {
+                token:localStorage.getItem('token')
+            }
+        })
+        .then(({data}) => {
+            if (data.name ==='JsonWebTokenError') {
+                alert('PLEASE LOGIN')
+            } else {
+                dispatch({
+                    type: 'HISTORY_TRANS',
+                    payload: data
+                })
+            }
         })
     }
 }
@@ -115,8 +188,13 @@ export const register = (params) => {
             email: params.email
         })
         .then(result=>{
-            console.log(result)
-            return <Redirect to="/login"/>
+            if (result.data.errmsg) {
+                swal('Username/Email already exist', '', 'error')
+            } else {
+                alert(JSON.stringify(result))
+                // this.props.history.push('/login')
+                // return <Redirect to="/login"/>
+            }
         })
         .catch(err=>{
             console.log(err)

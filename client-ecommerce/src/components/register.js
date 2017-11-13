@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
-// import axios from 'axios'
-// import swal from 'sweetalert'
+import swal from 'sweetalert'
 import '../App.css';
 // import {
 //     BrowserRouter as Router,
@@ -64,7 +63,7 @@ class Register extends Component {
         );
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.myProp(true)
         this.props.setTitle('Register')
     }
@@ -81,8 +80,9 @@ class Register extends Component {
         console.log(e)
         // alert('register result' + JSON.stringify(this.state))
         this.props.register(this.state)
-        // this.props.history.push('/')
-        // this.props.myProp(false)
+        this.props.history.push('/')
+        this.props.myProp(false)
+        this.props.setTitle('All Item')
     }
 }
 

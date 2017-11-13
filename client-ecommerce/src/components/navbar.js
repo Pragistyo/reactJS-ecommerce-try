@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { changeLoginRegis, setTitle, doLogout } from '../actions/compoActions'
+import { changeLoginRegis, setTitle, doLogout, getCategory, getAllItem } from '../actions/compoActions'
 import logo from '../logo.svg'
 import {
     BrowserRouter as Router,
@@ -18,27 +18,34 @@ class Navbar extends Component {
         return (
         <header className="mdl-layout__header">
             <div className="mdl-layout__header-row">
-                <Link
-                    className="mdl-navigation__link"
-                    to="/"
-                    onClick={this.changeTitle.bind(this, 'All Item')}
-                >All Item
-              </Link>
-                <nav className="mdl-navigation">
-                    <Link to="" id="submenu" className="mdl-navigation__link">Category</Link>
-                </nav>
-                <ul className="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-                    htmlFor="submenu">
-                    <li className="mdl-menu__item">Phone</li>
-                    <li className="mdl-menu__item">Tablet</li>
-                    <li className="mdl-menu__item">Watch</li>
-                </ul>
                 <div className="">
                     <img src={logo} className="App-logo" alt="logo" />
                 </div>
                 <div className="">
                     <span className="mdl-layout-title logo">Ecommerce</span>
                 </div>
+                <Link
+                    className="mdl-navigation__link"
+                    to="/"
+                    onClick={this.changeTitle.bind(this, 'All Item') }
+                >All Item
+                </Link>
+                <nav className="mdl-navigation">
+                    <a to="" id="submenu" className="mdl-navigation__link">Category</a>
+                </nav>
+                <ul className="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+                    htmlFor="submenu">
+                    <Link 
+                    onClick={this.props.getCategory.bind(this,'phone')}
+                    to="/category/phone" className="mdl-menu__item">Phone</Link>
+                    <Link 
+                    onClick={this.props.getCategory.bind(this, 'tablet')}
+                    to="/category/tablet" className="mdl-menu__item">Tablet</Link>
+                    <Link 
+                    onClick={this.props.getCategory.bind(this, 'watch')}
+                    to="/category/watch" className="mdl-menu__item">Watch</Link>
+                </ul>
+
                 <div className="mdl-layout-spacer"></div>
                 {this.buttonLog.call(this)}
             </div>
@@ -47,6 +54,10 @@ class Navbar extends Component {
     }
 
     ComponentWillMount () {
+    }
+
+    onCategory (params) {
+
     }
 
     buttonLog () {
@@ -66,7 +77,9 @@ class Navbar extends Component {
                 </Link>
             </nav>
         } else {
-            return <button onClick={this.logoutMethod.bind(this)}>LOGOUT</button>
+            return <button 
+                className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                    onClick={this.logoutMethod.bind(this)}>LOGOUT</button>
         }
     }
 
@@ -81,8 +94,10 @@ class Navbar extends Component {
         this.props.setTitle(val)
         if (val === 'Login' || val === 'Register') {
             this.props.changeLoginRegis(true)
+            this.props.getAllItem()
         } else {
             this.props.changeLoginRegis(false)
+            this.props.getAllItem()
         }
     }
 }
@@ -91,7 +106,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         changeLoginRegis: (params) => dispatch(changeLoginRegis(params)),
         setTitle: (params) => dispatch(setTitle(params)),
-        doLogout: (params) => dispatch(doLogout(params))
+        doLogout: (params) => dispatch(doLogout(params)),
+        getCategory: (params) => dispatch(getCategory(params)),
+        getAllItem: (params) => dispatch(getAllItem(params))
     }
 }
 

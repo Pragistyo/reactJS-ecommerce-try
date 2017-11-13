@@ -1,3 +1,4 @@
+import swal from 'sweetalert'
 const initState = {
     allItem: [],
     // allItem: [
@@ -14,13 +15,16 @@ const initState = {
     title: null,
     totalPrice: 0,
     cart: [],
-    cartFront: []
+    cartFront: [],
+    history: []
 }
 
 function compoReducer(state = initState, action) {
     switch (action.type) {
         case 'GET_ALLITEM':
         // alert(JSON.stringify(action))
+            return {...state, allItem: action.payload}
+        case 'GET_CATEGORY':
             return {...state, allItem: action.payload}
         case 'SET_ITEM':
             return { ...state, item: action.payload.item}
@@ -49,9 +53,17 @@ function compoReducer(state = initState, action) {
             //     totalPrice: 100000005,
             //     cartFront: [...state.cartFront, action.payload]
             // }
+        case 'CLEAR_CART':
+            return {
+                ...state, cart: [], cartFront: [], totalPrice: 0
+            }
         case 'TOTAL_PRICE':
             return {
                 ...state, totalPrice: action.payload
+            }
+        case 'HISTORY_TRANS':
+            return {
+                ...state, history: action.payload
             }
         default:
             return state

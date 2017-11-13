@@ -4,8 +4,9 @@ require('dotenv').config()
 // module.exports = {
 
   function isLogin(req,res,next){
+    console.log('MASUK ISLOGIN ==============')
   // let isLogin = (req,res,next)=>{
-    jwt.verify(req.body.token, process.env.SECRET_KEY,(err,decoded)=>{
+    jwt.verify(req.headers.token, process.env.SECRET_KEY,(err,decoded)=>{
       if(!err){
         req.role = decoded.role
         next()

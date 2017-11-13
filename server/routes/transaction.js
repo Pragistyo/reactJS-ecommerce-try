@@ -13,7 +13,7 @@ const router       = express.Router();
 // router.post('/verify',customer.verify);
 
 router.get('/',transaction.getTransaction);
-router.get('/:id',transaction.singleTransactions);
+router.get('/:id', jwt.isLogin, transaction.singleTransactions);
 router.post('/',jwt.isLogin,transaction.addTransaction);
 router.delete('/:id',transaction.removeTrans);
 
