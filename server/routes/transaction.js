@@ -18,6 +18,6 @@ router.post('/',jwt.isLogin,transaction.addTransaction);
 router.delete('/:id',transaction.removeTrans);
 
 
-console.log("wahahaha router transaction");
+console.log("ROUTER transaction");
 
 module.exports =router

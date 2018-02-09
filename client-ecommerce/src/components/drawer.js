@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { changeLoginRegis, setTitle, doLogout, getCategory, getAllItem } from '../actions/compoActions'
+import { 
+    changeLoginRegis, 
+    setTitle, 
+    doLogout, 
+    getCategory, 
+    getAllItem 
+} from '../actions/generalAction'
 import {
     BrowserRouter as Router,
     Route,

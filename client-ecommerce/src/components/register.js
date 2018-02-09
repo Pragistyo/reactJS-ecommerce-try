@@ -8,7 +8,11 @@ import '../App.css';
 //     Link
 // } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { changeLoginRegis, register, setTitle } from '../actions/compoActions'
+import { 
+    changeLoginRegis, 
+    register, 
+    setTitle 
+} from '../actions/generalAction'
 
 
 class Register extends Component {

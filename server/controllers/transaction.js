@@ -1,3 +1,4 @@
+console.log('controller TRANSACTION')
 const mongoose     = require('mongoose');
 const transaction  = require('../models/transaction');
 
@@ -57,7 +58,7 @@ function removeTrans(req,res){
     })
   })
   .catch(err=>{
-    res.send('ERRROOOORRR'+err)
+    res.send('THERE IS ERROR: '+err)
   })
 }
 

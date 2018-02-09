@@ -1,3 +1,4 @@
+console.log('MODEL CUSTOMER \n')
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 

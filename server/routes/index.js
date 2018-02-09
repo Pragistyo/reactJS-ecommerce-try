@@ -11,6 +11,6 @@ router.put('/:id', product.updateProduct);
 router.delete('/:id', product.removeProduct);
 // router.post('/login',product.login);
 
-console.log("wahahaha router index/product");
+console.log("ROUTER index/PRODUCT");
 
 module.exports =router

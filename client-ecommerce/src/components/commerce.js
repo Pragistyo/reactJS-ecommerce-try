@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import Compo from './component.js'
+import ItemCard from './itemCard.js'
 import Categ from './category.js'
 import Login from './login.js'
+import '../App.css'
 import Register from './register.js'
 import Checkout from './checkout.js'
 import { connect } from 'react-redux'
-import { changeLoginRegis, setTitle } from '../actions/compoActions'
+import { changeLoginRegis, setTitle } from '../actions/generalAction'
 import {
     BrowserRouter as Router,
     Route,
@@ -23,7 +24,7 @@ class Commerce extends Component{
             <main className="mdl-layout__content">
                 <div className="page-content">
                     <h3 className="" align="center">{this.props.userData.username}</h3>
-                    <h3 className="" align="center">{this.props.title}</h3>
+                    <h3 className="title" align="center">{this.props.title}</h3>
                     <hr />
                     <div className="mdl-grid">
                         <Checkout myProp={[this.props.totalPrice, this.props.cart]}></Checkout>
@@ -32,7 +33,7 @@ class Commerce extends Component{
                                 <Route
                                     exact path="/"
                                     render={props => this.props.allItem.map(item => {
-                                        return <Compo key={item._id} nama={item} receiveDataCart={this.receiveData}/>
+                                        return <ItemCard key={item._id} nama={item} receiveDataCart={this.receiveData}/>
                                     })}
                                 />
                                 <Route

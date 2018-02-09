@@ -16,7 +16,7 @@ import {
   changeLoginRegis,
   verify,
   setTitle
- } from './actions/compoActions'
+ } from './actions/generalAction'
 
 
 class App extends Component {
@@ -56,58 +56,6 @@ class App extends Component {
       })
     })
   }
-
-  // receiveData (product) {
-  //   this.alertCartFront.call(this,product.objItem)
-  //   this.setState({
-  //     cart: [...this.state.cart, product.objItem._id],
-  //   })
-  //   // ALERT STRING
-  //   let arr = [product.objItem.name,product.msg]
-  //   let alertStr = arr.join(', ')
-  //   swal(`${alertStr}`, 'You Add This Item to Cart','success')
-  // }
-
-  // alertCartFront (product) {
-  //   if (!product.quantity) {
-  //     product.quantity = 0
-  //   }
-  //   var produkidx = this.state.cartFront.findIndex(item => {
-  //     return item._id === product._id
-  //   })
-  //   if (produkidx === -1) {
-  //     product.quantity += 1
-  //     this.setState({
-  //       cartFront: [...this.state.cartFront, product]
-  //     }, () => {
-  //       this.calculatePrice.call(this)
-  //   })
-  // } else {
-  //     const cartFront = [...this.state.cartFront]
-  //     cartFront[produkidx].quantity = product.quantity + 1 
-  //     this.setState({
-  //       cartFront
-  //     })
-  //     // this.state.cartFront[produkidx].quantity = product.quantity + 1 
-  //     alert('produk ' + JSON.stringify(this.state.cartFront))
-  //     this.calculatePrice.call(this)
-  //   }
-  // }
-
-  // calculatePrice () {
-  //   let total = 0;
-  //   if (this.state.cartFront.length > 0) {
-  //     this.state.cartFront.forEach(item => {
-  //       let calc = item.price * item.quantity
-  //       total += calc
-  //     })
-  //   } else {
-  //     total = 0
-  //   }
-  //   this.setState({
-  //     totalPrice: total
-  //   })
-  // }
 
 }
 

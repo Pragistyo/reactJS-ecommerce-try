@@ -8,6 +8,6 @@ router.get('/', customer.allUser); //get allUser
 router.post('/', customer.addUser);//post newUser
 router.post('/login',customer.login);
 
-console.log("wahahaha");
+console.log("VOID");
 
 module.exports =router

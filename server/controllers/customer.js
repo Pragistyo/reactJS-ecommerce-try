@@ -1,3 +1,4 @@
+console.log('controllers CUSTOMER')
 const customer  = require('../models/customer');
 const jwt       = require('jsonwebtoken');
 const bcrypt    = require('bcrypt');

@@ -12,7 +12,7 @@ router.delete('/:id', jwt.isLogin,jwt.isAdmin,customer.removeCustomer);//post ne
 router.post('/login',customer.login);
 router.post('/verify',customer.verify);
 
-console.log("wahahaha router customer");
+console.log("ROUTER CUSTOMER");
 
 module.exports = router
 

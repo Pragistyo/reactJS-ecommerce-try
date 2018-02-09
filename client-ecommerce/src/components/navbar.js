@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import '../index.css'
 import { connect } from 'react-redux'
-import { changeLoginRegis, setTitle, doLogout, getCategory, getAllItem } from '../actions/compoActions'
+import { 
+    changeLoginRegis, 
+    setTitle, 
+    doLogout, 
+    getCategory, 
+    getAllItem } from '../actions/generalAction'
 import logo from '../logo.svg'
 import {
     BrowserRouter as Router,

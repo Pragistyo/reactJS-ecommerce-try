@@ -8,7 +8,11 @@ import '../App.css';
 //     Link
 // } from 'react-router-dom'
 import { connect }from 'react-redux'
-import { changeLoginRegis, login, setTitle } from '../actions/compoActions'
+import { 
+    changeLoginRegis, 
+    login, 
+    setTitle 
+} from '../actions/generalAction'
 
 
 class Login extends Component {

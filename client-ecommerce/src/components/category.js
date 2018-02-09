@@ -10,7 +10,7 @@ import {
     setTotalPrice,
     getCategory,
     setTitle
-} from '../actions/compoActions'
+} from '../actions/generalAction'
 
 
 class Categ extends Component {

@@ -7,10 +7,10 @@ import {
     addCart, 
     addCartFront,
     setTotalPrice
- } from '../actions/compoActions'
+ } from '../actions/generalAction'
 
 
-class Compo extends Component {
+class ItemCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -90,7 +90,7 @@ class Compo extends Component {
         } else {
             const cartFront = [...this.props.cartFront]
             cartFront[produkidx].quantity = product.quantity + 1
-            Compo.calculatePrice.call(this)
+            // ItemCard.calculatePrice.call(this)
         }
     }
 
@@ -132,7 +132,6 @@ const mapStateToProps = (state) => {
 
 var ConnectedComponent = connect(
     mapStateToProps, mapDispatchToProps
-)(Compo)
-
+)(ItemCard)
 
 export default ConnectedComponent

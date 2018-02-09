@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { clearCart, checkoutAction, loginStatus, historyTrans } from '../actions/compoActions'
+import { clearCart, checkoutAction, loginStatus, historyTrans } from '../actions/generalAction'
 import {connect} from 'react-redux'
 import swal from 'sweetalert'
 

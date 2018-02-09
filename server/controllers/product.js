@@ -1,3 +1,4 @@
+console.log('controllers PRODUCT')
 const mongoose = require('mongoose');
 const product  = require('../models/product');
 

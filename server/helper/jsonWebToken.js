@@ -4,7 +4,7 @@ require('dotenv').config()
 // module.exports = {
 
   function isLogin(req,res,next){
-    console.log('MASUK ISLOGIN ==============')
+    console.log('ISLOGIN ==============')
   // let isLogin = (req,res,next)=>{
     jwt.verify(req.headers.token, process.env.SECRET_KEY,(err,decoded)=>{
       if(!err){
@@ -18,6 +18,7 @@ require('dotenv').config()
   }
 
   function isAdmin(req,res,next){
+    console.log('ISADMIN ==============')
     if(req.role === 'admin'){
       next()
     }
@@ -27,7 +28,7 @@ require('dotenv').config()
   }
 
   let authUser = (req,res,next) =>{
-
+    console.log('AUTUSER')
     if(req.role ==='customer' || req.role === 'admin'){
       next()
     }else{
