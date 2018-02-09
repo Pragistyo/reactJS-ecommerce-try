@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import swal from 'sweetalert'
+// import swal from 'sweetalert'
 import './App.css'
 import Commerce from './components/commerce.js'
 import Drawer from './components/drawer.js'

@@ -8,7 +8,8 @@ import {
     addCart,
     addCartFront,
     setTotalPrice,
-    getCategory
+    getCategory,
+    setTitle
 } from '../actions/compoActions'
 
 
@@ -51,12 +52,13 @@ class Categ extends Component {
         );
     }
 
-    ComponentWillMount() {
-        this.props.setTitle('All Item')
-        this.props.title
-    }
+    // componentWillMount() {
+        //     this.props.title
+        //     this.props.setTitle('All Item')
+    // }
     
     componentDidMount() {
+        this.props.setTitle(this.state.match)
         this.props.getCategory(this.state.match.toLowerCase())
     }
     
@@ -118,6 +120,7 @@ class Categ extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         changeLoginRegis: (params) => dispatch(changeLoginRegis(params)),
+        setTitle: (params) => dispatch(setTitle(params)),
         addCart: (params) => dispatch(addCart(params)),
         addCartFront: (params) => dispatch(addCartFront(params)),
         setTotalPrice: (params) => dispatch(setTotalPrice(params)),

@@ -54,12 +54,12 @@ class Checkout extends Component{
     itemChosen() {
         if (this.props.cartFront.length !== 0) {
             return <div>
-                <table>
+                <table className="">
                     <thead>
                         <tr>
                             <th>Item Name</th>
                             <th>Quantity</th>
-                            <th>Price (@each)</th>
+                            <th>Price </th>
                         </tr>
                     </thead>
                     {this.props.cartFront.map(item => {
@@ -67,12 +67,30 @@ class Checkout extends Component{
                             <tr>
                                 <td>{item.name}</td>
                                 <td>{item.quantity} pc(s)</td>
-                                <td>Rp. {item.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")},-</td>
+                                <td>Rp. {(item.price*item.quantity).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")},-</td>
+                                <button 
+                                onClick={this.removeItem.bind(this, item)}
+                                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+                                    <i class="material-icons">delete</i>
+                                </button>
                             </tr>
                         </tbody>
                     })}
                 </table>
             </div>
+        }
+    }
+
+    removeItem (objItem) {
+        swal('Not Finished Yet !!', '', 'error')
+        if (objItem.quantity > 1) {
+            alert('minus quantity')
+            // bikin action
+            //looping cart front, temuin id nya, kurangin quantity
+        } else {
+            alert('splice')
+            //bikin action
+            //looping cart front, temuin id, splice
         }
     }
 
@@ -115,9 +133,6 @@ class Checkout extends Component{
     }
     
     activateCheckout(params) {
-        // alert(JSON.stringify(this.props.cartFront))
-        // alert(this.props.totalPrice)
-        // alert(this.props.userData.userId)
         if (this.props.loginStatus) {
             this.props.checkoutAction({
                 customerId:this.props.userData.userId,
@@ -144,7 +159,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    // alert(JSON.stringify(state.lapak))
     return {
         formLoginRegis: state.lapak.formLoginRegis,
         cartFront: state.lapak.cartFront,

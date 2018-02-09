@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../index.css'
 import { connect } from 'react-redux'
 import { changeLoginRegis, setTitle, doLogout, getCategory, getAllItem } from '../actions/compoActions'
 import logo from '../logo.svg'
@@ -31,7 +32,7 @@ class Navbar extends Component {
                 >All Item
                 </Link>
                 <nav className="mdl-navigation">
-                    <a to="" id="submenu" className="mdl-navigation__link">Category</a>
+                    <p id="submenu" className="categoryClick mdl-navigation__link">Category</p>
                 </nav>
                 <ul className="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
                     htmlFor="submenu">
@@ -56,8 +57,9 @@ class Navbar extends Component {
     ComponentWillMount () {
     }
 
-    onCategory (params) {
-
+    onCategory (title) {
+        this.props.getCategory.bind(this, title)
+        this.changeTitle.bind(this, title)
     }
 
     buttonLog () {
@@ -66,7 +68,7 @@ class Navbar extends Component {
                 <Link
                     className="mdl-navigation__link"
                     to="/login"
-                    onClick={this.changeTitle.bind(this, 'Login')}
+                    // onClick={this.changeTitle.bind(this, 'Login')}
                 >Login
                 </Link>
                 <Link
@@ -77,9 +79,15 @@ class Navbar extends Component {
                 </Link>
             </nav>
         } else {
-            return <button 
-                className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-                    onClick={this.logoutMethod.bind(this)}>LOGOUT</button>
+            return <nav>
+                <Link
+                    className="mdl-navigation__link"
+                    onClick={this.logoutMethod.bind(this)}
+                    to='/'
+                    >
+                    LOGOUT
+                </Link>
+            </nav>
         }
     }
 

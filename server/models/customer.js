@@ -6,7 +6,7 @@ var userSchema = new Schema({
   password: { type: String, required: true},
   email: { type: String, required: true},
   role: {type: String}
-},{timestamps:true})
+})
 
 var user = mongoose.model('user', userSchema);
 

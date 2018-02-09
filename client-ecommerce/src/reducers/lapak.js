@@ -1,4 +1,3 @@
-import swal from 'sweetalert'
 const initState = {
     allItem: [],
     // allItem: [

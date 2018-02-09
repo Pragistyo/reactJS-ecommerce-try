@@ -26,32 +26,32 @@ class Register extends Component {
             <div className="mdl-cell" align="center">
                 <div className="mdl-cell mdl-cell--12-col mdl-cell--8-offset">
                     <form onSubmit={this.registerSubmit.bind(this)}>
-                        <div className="mdl-textfield mdl-js-textfield">
-                            <label className="mdl-textfield__label" htmlFor="inputText">Username...</label>
+                        <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                            <label className="mdl-textfield__label" htmlFor="input_username_register">Username...</label>
                             <input 
                             name="username"
                             onChange={this.onChange.bind(this)}
                             className="mdl-textfield__input" 
                             type="text" 
-                            id="inputUsername" />
+                            id="input_username_register" />
                         </div>
-                        <div className="mdl-textfield mdl-js-textfield">
-                            <label className="mdl-textfield__label" htmlFor="inputPass">Password...</label>
+                        <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                            <label className="mdl-textfield__label" htmlFor="input_pass_register">Password...</label>
                             <input 
                             name="password"
                             onChange={this.onChange.bind(this)}
                             className="mdl-textfield__input" 
                             type="password" 
-                            id="inputPass" />
+                            id="input_pass_register" />
                         </div>
-                        <div className="mdl-textfield mdl-js-textfield">
-                            <label className="mdl-textfield__label" htmlFor="inputEmail">Email...</label>
+                        <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                            <label className="mdl-textfield__label" htmlFor="input_Email">Email...</label>
                             <input 
                             name="email"
                             onChange={this.onChange.bind(this)}
                             className="mdl-textfield__input" 
                             type="email" 
-                            id="inputEmail" />
+                            id="input_Email" />
                         </div><br/>
                         <button 
                             className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent "

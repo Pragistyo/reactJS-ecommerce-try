@@ -21,28 +21,30 @@ class Compo extends Component {
     render() {
         return (
             <div className="mdl-cell--4-col">
-                <div className="demo-card-square mdl-card mdl-shadow--2dp">
-                    <div className="" align="center">
-                        <img src={this.props.nama.img} alt="barang"/>
-                    </div>
-                    <div className="mdl-card__title mdl-card--expand">
-                        <h2 className="mdl-card__title-text">{this.props.nama.name}</h2>
-                    </div>
-                    <div className="mdl-card__supporting-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aenan convallis.
-                    </div>
-                    <div className="mdl-card__actions mdl-card--border">
-                        <p className="mdl-button mdl-button--colored mdl-js-button">
-                            Price : Rp. {this.props.nama.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")},-
-                        </p><br />
-                        <p className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
-                           onClick ={this.addToCart.bind(this,{objItem: this.props.nama,msg:'Item Added !'})}>
-                            <i className="material-icons">shop</i>
-                            Cart : {this.state.count}
-                        </p>
-                    </div>
-                </div><br /><br />
+                 <div className="mdl-grid">
+                    <div className="demo-card-square mdl-card mdl-shadow--2dp">
+                        <div className="" align="center">
+                            <img src={this.props.nama.img} alt="barang"/>
+                        </div>
+                        <div className="mdl-card__title mdl-card--expand">
+                            <h2 className="mdl-card__title-text">{this.props.nama.name}</h2>
+                        </div>
+                        <div className="mdl-card__supporting-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Aenan convallis.
+                        </div>
+                        <div className="mdl-card__actions mdl-card--border">
+                            <p className="mdl-button mdl-button--colored mdl-js-button">
+                                Price : Rp. {this.props.nama.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")},-
+                            </p><br />
+                            <p className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
+                            onClick ={this.addToCart.bind(this,{objItem: this.props.nama,msg:'Item Added !'})}>
+                                <i className="material-icons">shop</i>
+                                Cart : {this.state.count}
+                            </p>
+                        </div>
+                    </div><br /><br />
+                </div>
             </div>
         );
     }

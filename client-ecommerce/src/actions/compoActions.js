@@ -22,6 +22,7 @@ export const getAllItem = () => {
 }
 
 export const getCategory = (params) => {
+    // alert(params)
     return (dispatch) => {
         http.get(`category/${params}`)
         .then(({data}) => {

@@ -22,18 +22,19 @@ class Login extends Component {
 
     render () {
         return (
-            <div className="mdl-cell" align="center">
-                <div className="mdl-cell mdl-cell--12-col mdl-cell--8-offset">
+            <div className="mdl-cell " align="center">
+                <div className="mdl-cell mdl-cell--12-col mdl-cell--8-offset ">
+                    <div className="demo-card-square mdl-card mdl-shadow--2dp">
                     {/* <form onSubmit={this.loginSubmit.bind(this)}> */}
                     <form onSubmit={(e) => this.loginSubmit(e, this.props.history.push('/'))}>
-                        <div className="mdl-textfield mdl-js-textfield">
-                            <label className="mdl-textfield__label" htmlFor="inputText">Username...</label>
+                        <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+                            <label className="mdl-textfield__label" htmlFor="input_username_login">Username...</label>
                             <input
                             onChange={this.onChange.bind(this)} 
                             name="username" 
                             className="mdl-textfield__input" 
                             type="text" 
-                            id="inputUsername" />
+                            id="input_username_login" />
                         </div>
                         <div className="mdl-textfield mdl-js-textfield">
                             <label className="mdl-textfield__label" htmlFor="inputPass">Password...</label>
@@ -41,13 +42,14 @@ class Login extends Component {
                             onChange={this.onChange.bind(this)} 
                             name="password" 
                             className="mdl-textfield__input" 
-                            type="password" id="inputPass"/>
+                            type="password" id="input_password_login"/>
                         </div><br/>
                         <button 
                             className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent "
                             >Submit
                         </button>
                     </form>
+                    </div>
                 </div>
             </div>
         );
@@ -70,7 +72,7 @@ class Login extends Component {
         console.log(e)
         this.props.login(this.state)
         // this.context.history.push('/'); 
-        // this.props.history.push('/')
+        this.props.history.push('/')
         this.props.myProp(false)
         this.props.setTitle('All Item')
         // window.location.href='/'
