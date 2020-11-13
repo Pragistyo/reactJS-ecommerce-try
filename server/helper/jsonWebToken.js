@@ -12,7 +12,7 @@ require('dotenv').config()
         next()
       }
       else{
-        res.send(err)
+        res.status(401).send(err)
       }
     })
   }
@@ -23,16 +23,16 @@ require('dotenv').config()
       next()
     }
     else{
-      res.send('Please login as Admin')
+      res.status(401).send('Please login as Admin')
     }
   }
 
   let authUser = (req,res,next) =>{
-    console.log('AUTUSER')
+    console.log('AUTHUSER')
     if(req.role ==='customer' || req.role === 'admin'){
       next()
     }else{
-      res.send('invalid authority')
+      res.status(401).send('invalid authority')
     }
   }
 // }

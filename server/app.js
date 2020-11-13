@@ -5,7 +5,6 @@ const morgan      = require('morgan');
 const cors        = require('cors');
 const app         = express()
 
-// mongoose.connect('mongodb://localhost/belanjaan',(err)=>{
 mongoose.connect(process.env.MONGO_URI, (err) => {
   if(!err) {console.log('mongoose connected');}
   else {console.log('ERROR, NOT CONNECTED');}
