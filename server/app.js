@@ -4,12 +4,26 @@ const mongoose    = require('mongoose');
 const morgan      = require('morgan');
 const cors        = require('cors');
 const app         = express()
+const to          = require('./helper/to')
 
-mongoose.connect(process.env.MONGO_URI, (err) => {
-  if(!err) {console.log('mongoose connected');}
-  else {console.log('ERROR, NOT CONNECTED');}
-})
 
+require('dotenv').config()
+
+const connect_mongo = async () =>{
+  try {
+    console.log(`+++++++++++++++++++++++++++++++++++`);
+    console.log(`====================================`);
+    let [mongoConnectErr, mongoConnect] = await to( mongoose.connect(
+      process.env.MONGO_URI, { useNewUrlParser: true })
+       )
+    if (mongoConnectErr) console.log(`Error: ${mongoConnectErr}`);
+    if(mongoConnect) console.log('mongoose connected');
+  } catch (error) {
+    console.log(`ERROR, NOT CONNECTED: ${error.toString()}`);
+  }
+}
+
+connect_mongo()
 
 app.use(cors())
 app.use(morgan('dev'))
